@@ -1,6 +1,3 @@
-
-![alt tag](https://raw.githubusercontent.com/Phil-Sparkes/comp110-worksheets/master/worksheet_B/Flowchart.png)
-
 while IncorrectGuesses < 4                                      # loops until the user has 4 inccorect guesses
 
     print "Pick a word"
