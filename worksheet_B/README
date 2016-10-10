@@ -1,3 +1,4 @@
+```
 while IncorrectGuesses < 4                                      # loops until the user has 4 inccorect guesses
 
     print "Pick a word"
@@ -24,3 +25,6 @@ while IncorrectGuesses < 4                                      # loops until th
 end while
 
 print "game over"                                               # if the user has 4 incorrect guesses then "game over" is displayed
+```
+
+![flowchart](Flowchart.png)
