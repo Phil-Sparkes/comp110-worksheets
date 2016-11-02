@@ -21,10 +21,8 @@ class OxoBoard:
     def is_board_full(self):
         """ If there are still empty squares on the board, return False.
             If there are no empty squares, return True. """
-        test = 0
         for squares in xrange(9):
             if self.gameboard[squares] == 0:
-                test += 1
                 return False
 
         return True
@@ -90,7 +88,6 @@ if __name__ == '__main__':
     board = OxoBoard()
     current_player = 1
     while True:
-        print board.gameboard
         board.show()
         print "Choose a square, Player", current_player
         x, y = input_square()
