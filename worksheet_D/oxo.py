@@ -1,12 +1,16 @@
 class OxoBoard:
     def __init__(self):
         """ The initialiser. Initialise any fields you need here. """
-        self.gameboard = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        self.gameboard = []
+        for i in xrange(9):
+            self.gameboard.append(0)
+
 
     def get_square(self, x, y):
         """ Return 0, 1 or 2 depending on the contents of the specified square. """
         square = x + y * 3
         return self.gameboard[square]
+
 
     def set_square(self, x, y, mark):
         """ If the specified square is currently empty (0), fill it with mark and return True.
@@ -18,33 +22,43 @@ class OxoBoard:
         else:
             return False
 
+
     def is_board_full(self):
         """ If there are still empty squares on the board, return False.
             If there are no empty squares, return True. """
         for squares in xrange(9):
             if self.gameboard[squares] == 0:
                 return False
-
         return True
+
 
     def get_winner(self):
         """ If a player has three in a row, return 1 or 2 depending on which player.
             Otherwise, return 0. """
-        for x in xrange(3):
 
-            # Checks for horizontal and vertical lines of 3
-            if self.gameboard[x] == self.gameboard[x+3] and self.gameboard[x+3] == self.gameboard[x+6]:
-                return self.gameboard[x]
-            if self.gameboard[x*3] == self.gameboard[x*3+1] and self.gameboard[x*3+1] == self.gameboard[x*3+2]:
-                return self.gameboard[x*3]
+        for i in xrange(3):
+
+            # Checks for vertical lines of 3
+            # When i = 1, i + 3 = 4 and i + 6 = 7
+            # 1, 4, 7 is a vertical line on the grid
+            if self.gameboard[i] == self.gameboard[i + 3] == self.gameboard[i + 6] != 0:
+                return self.gameboard[i]
+
+            # Checks for horizontal lines of 3
+            # When i = 1, i * 3 = 3, i * 3 + 1 = 4 and i * 3 + 2 = 5
+            # 3, 4, 5 is a horizontal line on the grid
+            if self.gameboard[i * 3] == self.gameboard[i * 3 + 1] == self.gameboard[i * 3 + 2] != 0:
+                return self.gameboard[i * 3]
 
         # Checks for diagonal lines of 3
-        if self.gameboard[0] == self.gameboard[4] and self.gameboard[4] == self.gameboard[8]:
+        # 0, 4, 8 and 2, 4, 6 are the diagonal lines on the grid
+        if self.gameboard[0] == self.gameboard[4] == self.gameboard[8] != 0:
             return self.gameboard[0]
-        if self.gameboard[2] == self.gameboard[4] and self.gameboard[4] == self.gameboard[6]:
+        if self.gameboard[2] == self.gameboard[4] == self.gameboard[6] != 0:
             return self.gameboard[2]
 
         return 0
+
 
     def show(self):
         """ Display the current board state in the terminal. You should not need to edit this. """
@@ -99,7 +113,6 @@ if __name__ == '__main__':
                 board.show()
                 print "Player", winner, "wins!"
                 break   # End the game
-
             elif board.is_board_full():
                 board.show()
                 print "It's a draw!"
